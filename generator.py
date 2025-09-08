@@ -31,6 +31,12 @@ def rotate_character(character):
     next_position = (current_position + rotate_by) % len(LOOKUP_TABLE)
     return LOOKUP_TABLE[next_position]
 
+def rotate_string(string):
+    rotated_string = ""
+    for character in string:
+        rotated_string += rotate_character(character)
+    return rotated_string
+
 def main():
     nouns=["flowers", "rain", "trees", "grass"]
     verbs=["bloom", "fall", "shake", "flow"]
@@ -49,6 +55,10 @@ def main():
     print(f"Original: {character}")
     print(f"Rotated: {rotate_character(character)}")
     print(f"Rotated again: {rotate_character(rotate_character(character))}")
+
+    print(f"Original:\n{poem_string}")
+    print(f"Rotated:\n{rotate_string(poem_string)}")
+    print(f"Rotated again:\n{rotate_string(rotate_string(poem_string))}")
 
 if __name__ == "__main__":
     main()
