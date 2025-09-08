@@ -1,4 +1,8 @@
 import random
+import string
+
+LOOKUP_TABLE = string.ascii_letters + ".,!? \n"
+print(LOOKUP_TABLE)
 
 def pick_one_of(list):
     '''
@@ -11,7 +15,7 @@ def pick_one_of(list):
 
 def get_poem_line(nouns, verbs, adverbs): 
     sentence_structure = random.randint(0,1)
-    
+
     noun = pick_one_of(nouns)
     verb = pick_one_of(verbs)
     adverb = pick_one_of(adverbs)
@@ -31,9 +35,9 @@ def main():
     while nouns and verbs and adverbs:
         poem.append(get_poem_line(nouns, verbs, adverbs))
     
-    # Print out poem line by line
-    for line in poem:
-        print(line)
+    # Transform the list into one string
+    poem_string = "\n".join(poem)
+    print(poem_string)
 
 if __name__ == "__main__":
     main()
