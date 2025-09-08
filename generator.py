@@ -1,11 +1,25 @@
 import random
 
+def pick_one_of(list):
+    '''
+    Select a random element from the list and before returning it,
+    remove it from the list
+    '''
+    res = random.choice(list)
+    list.remove(res)
+    return res
+
 def get_poem_line(nouns, verbs, adverbs): 
     sentence_structure = random.randint(0,1)
+    
+    noun = pick_one_of(nouns)
+    verb = pick_one_of(verbs)
+    adverb = pick_one_of(adverbs)
+
     if (sentence_structure == 0): 
-        return f"Let {random.choice(nouns)} {random.choice(verbs)} {random.choice(adverbs)}."
+        return f"Let {noun} {verb} {adverb}."
     else:
-        return f"Why would {random.choice(nouns)} not {random.choice(verbs)} {random.choice(adverbs)}?"
+        return f"Why would {noun} not {verb} {adverb}?"
 
 def main():
     nouns=["flowers", "rain", "trees", "grass"]
@@ -14,7 +28,7 @@ def main():
 
     # Generate poem line by line
     poem=[]
-    for i in range(0,5):
+    while nouns and verbs and adverbs:
         poem.append(get_poem_line(nouns, verbs, adverbs))
     
     # Print out poem line by line
