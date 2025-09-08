@@ -2,7 +2,6 @@ import random
 import string
 
 LOOKUP_TABLE = string.ascii_letters + ".,!? \n"
-# print(LOOKUP_TABLE)
 
 def pick_one_of(list):
     '''
@@ -20,7 +19,7 @@ def get_poem_line(nouns, verbs, adverbs):
     verb = pick_one_of(verbs)
     adverb = pick_one_of(adverbs)
 
-    if (sentence_structure == 0): 
+    if sentence_structure == 0: 
         return f"Let {noun} {verb} {adverb}."
     else:
         return f"Why would {noun} not {verb} {adverb}?"
@@ -37,7 +36,7 @@ def rotate_string(string):
         rotated_string += rotate_character(character)
     return rotated_string
 
-def main():
+def generate_poem():
     nouns=["flowers", "rain", "trees", "grass"]
     verbs=["bloom", "fall", "shake", "flow"]
     adverbs=["happily", "angrily", "anxiously", "calmly"]
@@ -48,17 +47,28 @@ def main():
         poem.append(get_poem_line(nouns, verbs, adverbs))
     
     # Transform the list into one string
-    poem_string = "\n".join(poem)
-    # print(poem_string)
+    return "\n".join(poem)
 
-    character = "a"
-    print(f"Original: {character}")
-    print(f"Rotated: {rotate_character(character)}")
-    print(f"Rotated again: {rotate_character(rotate_character(character))}")
+def main():
+    do = input("Welcome to the poetry generator. What do you want to do?\n" \
+    "Generate a new poem (enter g) or decrypt a poem (enter d)")
 
-    print(f"Original:\n{poem_string}")
-    print(f"Rotated:\n{rotate_string(poem_string)}")
-    print(f"Rotated again:\n{rotate_string(rotate_string(poem_string))}")
+    if do == "g":
+        print("Here is your poem:\n")
+        poem = generate_poem()
+        print(poem)
+        shouldEncrypt = input("Do you want to encrypt the poem? Enter yes or no.")
+        if shouldEncrypt == "yes":
+            rotated_poem = rotate_string(poem)
+            print("Here is your secret poem:")
+            print(rotated_poem)
+        else: 
+            print("Okay, bye.")
+    else:
+        poem_string = input("Sure. Please enter the encrypted poem.\n")
+        rotated_poem = rotate_string(poem_string)
+        print("Here is your decrypted poem:")
+        print(rotated_poem)
 
 if __name__ == "__main__":
     main()
