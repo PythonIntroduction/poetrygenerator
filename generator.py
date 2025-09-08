@@ -2,7 +2,7 @@ import random
 import string
 
 LOOKUP_TABLE = string.ascii_letters + ".,!? \n"
-print(LOOKUP_TABLE)
+# print(LOOKUP_TABLE)
 
 def pick_one_of(list):
     '''
@@ -25,6 +25,12 @@ def get_poem_line(nouns, verbs, adverbs):
     else:
         return f"Why would {noun} not {verb} {adverb}?"
 
+def rotate_character(character):
+    current_position = LOOKUP_TABLE.index(character)
+    rotate_by = len(LOOKUP_TABLE) // 2 #Floor division
+    next_position = (current_position + rotate_by) % len(LOOKUP_TABLE)
+    return LOOKUP_TABLE[next_position]
+
 def main():
     nouns=["flowers", "rain", "trees", "grass"]
     verbs=["bloom", "fall", "shake", "flow"]
@@ -37,7 +43,12 @@ def main():
     
     # Transform the list into one string
     poem_string = "\n".join(poem)
-    print(poem_string)
+    # print(poem_string)
+
+    character = "a"
+    print(f"Original: {character}")
+    print(f"Rotated: {rotate_character(character)}")
+    print(f"Rotated again: {rotate_character(rotate_character(character))}")
 
 if __name__ == "__main__":
     main()
