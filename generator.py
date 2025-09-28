@@ -1,7 +1,4 @@
 import random
-import string
-
-LOOKUP_TABLE = string.ascii_letters + ".,!? \n"
 
 def pick_one_of(list):
     '''
@@ -23,18 +20,6 @@ def get_poem_line(nouns, verbs, adverbs):
         return f"Let {noun} {verb} {adverb}."
     else:
         return f"Why would {noun} not {verb} {adverb}?"
-
-def rotate_character(character):
-    current_position = LOOKUP_TABLE.index(character)
-    rotate_by = len(LOOKUP_TABLE) // 2 #Floor division
-    next_position = (current_position + rotate_by) % len(LOOKUP_TABLE)
-    return LOOKUP_TABLE[next_position]
-
-def rotate_string(string):
-    rotated_string = ""
-    for character in string:
-        rotated_string += rotate_character(character)
-    return rotated_string
 
 def generate_poem():
     nouns=["flowers", "rain", "trees", "grass"]

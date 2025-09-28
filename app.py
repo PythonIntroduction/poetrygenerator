@@ -1,4 +1,5 @@
-from generator import generate_poem, rotate_string
+from generator import generate_poem
+from encryption import rotate_string
 
 def main():
     do = input("Welcome to the poetry generator. What do you want to do?\n" \
