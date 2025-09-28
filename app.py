@@ -1,4 +1,4 @@
-from generator import generate_poem
+from generator import Poem
 from encryption import rotate_string
 
 def main():
@@ -7,11 +7,12 @@ def main():
 
     if do == "g":
         print("Here is your poem:\n")
-        poem = generate_poem()
+        poem = Poem(Poem.EXAMPLE_NOUNS, Poem.EXAMPLE_VERBS, Poem.EXAMPLE_ADVERBS)
+        poem.generate()
         print(poem)
         shouldEncrypt = input("Do you want to encrypt the poem? Enter yes or no.")
         if shouldEncrypt == "yes":
-            rotated_poem = rotate_string(poem)
+            rotated_poem = rotate_string(str(poem))
             print("Here is your secret poem:")
             print(rotated_poem)
         else: 
